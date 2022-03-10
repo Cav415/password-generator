@@ -1,6 +1,6 @@
 // Assignment code here
 var passwordLength;
-var characterArray = ['a', 'b', 'c', 'd', 'A', 'B', 'C', 'D'];
+// var characterArray = ['a', 'b', 'c', 'd', 'A', 'B', 'C', 'D'];
 var uppercaseArray = [ 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 var lowercaseArray = ['a', 'b', 'c', 'd','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 var specArray = ['*', '$', '_'];
@@ -12,30 +12,33 @@ function generatePassword() {
   if (passwordLengthCheck()) {
     // console.log(passwordLength);
     useSpecCharacters = confirm('Do you want to include special characters?');
-    uppercaseArray = confirm ('Do you want to include uppercase letters?')
-    lowercaseArray = confirm('Do you want to include lowercase letters?')
+    useUppercase = confirm ('Do you want to include uppercase letters?')
+    useLowercase = confirm('Do you want to include lowercase letters?')
     return randomPassword(passwordLength);
   } 
 }
 
 function randomPassword(length) {
   var password = '';
-  for (var i = 0; i < length; i++) {
-    if (useSpecCharacters && Math.round(Math.random())) {
+  for (var i = 0; i < length -1; i++) {
+    if (password.length < length -1 && useSpecCharacters && Math.round(Math.random())) {
       password += specArray[Math.floor(Math.random() * specArray.length)];
-    } else {
-      password += characterArray[Math.floor(Math.random() * characterArray.length)];
-    }
-    if (useUppercase && Math.round(Math.random())) {
+    } 
+    // else {
+    //   password += characterArray[Math.floor(Math.random() * characterArray.length)];
+    // }
+    if (password.length < length -1 && useUppercase && Math.round(Math.random())) {
       password += uppercaseArray[Math.floor(Math.random() * uppercaseArray.length)];
-    } else {
-      password += characterArray[Math.floor(Math.random() * characterArray.length)];
-    }
-    if (useLowercase && Math.round(Math.random())) {
+    } 
+    // else {
+    //   password += characterArray[Math.floor(Math.random() * characterArray.length)];
+    // }
+    if (password.length < length -1 && useLowercase && Math.round(Math.random())) {
       password += lowercaseArray[Math.floor(Math.random() * lowercaseArray.length)];
-    } else {
-      password += characterArray[Math.floor(Math.random() * characterArray.length)];
-    }
+    } 
+    // else {
+    //   password += characterArray[Math.floor(Math.random() * characterArray.length)];
+    // }
 
    
   }
@@ -48,14 +51,18 @@ function passwordLengthCheck() {
   // console.log(length)
   if (isNaN(pwLength)) {
     alert('Please use a valid Number');
+    console.log('Hi')
     return false;
   } else if (pwLength < 8) {
     alert('Password must contain no less then 8 characters');
+    console.log('Hello')
     return false;
   } else if (pwLength > 128) {
+    console.log('Hola')
     alert('Password must contain no more then 128 characrers');
     return false;
   } else {
+    console.log(pwLength)
     passwordLength = pwLength;
     return true;
   }
