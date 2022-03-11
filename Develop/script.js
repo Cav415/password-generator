@@ -12,38 +12,32 @@ function generatePassword() {
   console.log("I'm in the generatePassord function ");
   console.log("The password length is ", passwordLength);
 
-  // if (passwordLengthCheck()) {
+   //if (passwordLengthCheck()) {
     console.log(passwordLength);
     useSpecCharacters = confirm('Do you want to include special characters?');
     useUppercase = confirm('Do you want to include uppercase letters?')
     useLowercase = confirm('Do you want to include lowercase letters?')
-    return randomPassword(passwordLength);
-  // }
-}
+    writePassword(randomPassword (passwordLength))
+   }
+//}
 
 function randomPassword(length) {
   console.log("I'm in the randomPassword function ")
   console.log(length)
   var password = '';
-  for (var i = 0; i < length - 1; i++) {
-    if (password.length < length - 1 && useSpecCharacters && Math.round(Math.random())) {
+  for (var i = 0; i < length; i++) {
+    if (useSpecCharacters && Math.round(Math.random())) {
       password += specArray[Math.floor(Math.random() * specArray.length)];
+      continue;
     }
-    // else {
-    //   password += characterArray[Math.floor(Math.random() * characterArray.length)];
-    // }
-    if (password.length < length - 1 && useUppercase && Math.round(Math.random())) {
+
+    if (useUppercase && Math.round(Math.random())) {
       password += uppercaseArray[Math.floor(Math.random() * uppercaseArray.length)];
+      continue;
     }
-    // else {
-    //   password += characterArray[Math.floor(Math.random() * characterArray.length)];
-    // }
-    if (password.length < length - 1 && useLowercase && Math.round(Math.random())) {
-      password += lowercaseArray[Math.floor(Math.random() * lowercaseArray.length)];
-    }
-    // else {
-    //   password += characterArray[Math.floor(Math.random() * characterArray.length)];
-    // }
+
+    password += lowercaseArray[Math.floor(Math.random() * lowercaseArray.length)];
+
 
 
   }
@@ -58,21 +52,21 @@ function passwordLengthCheck() {
   if (isNaN(pwLength)) {
     alert('Please use a valid Number');
     console.log('Hi')
-    return false;
+    return;
   } else if (pwLength < 8) {
     alert('Password must contain no less then 8 characters');
     console.log('Hello')
-    return false;
+    return;
   } else if (pwLength > 128) {
     console.log('Hola')
     alert('Password must contain no more then 128 characrers');
-    return false;
+    return;
   } else {
     console.log(pwLength)
     passwordLength = pwLength;
-    return true;
+    return generatePassword();
   }
-  generatePassword();
+ 
 }
 
 
@@ -82,9 +76,9 @@ function passwordLengthCheck() {
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
-function writePassword() {
+function writePassword(password) {
   console.log("I am in the writePassword Function ")
-  var password = generatePassword();
+  // var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
