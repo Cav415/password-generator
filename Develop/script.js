@@ -3,7 +3,7 @@ var passwordLength;
 // var characterArray = ['a', 'b', 'c', 'd', 'A', 'B', 'C', 'D']; 
 var uppercaseArray = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 var lowercaseArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-var specArray = ['*', '$', '_'];
+var specArray = ['*','_','$','&','#','@',"!","%"];
 var useSpecCharacters = false;
 var useUppercase = false;
 var useLowercase = false;
@@ -51,14 +51,14 @@ function passwordLengthCheck() {
   // console.log(length)
   if (isNaN(pwLength)) {
     alert('Please use a valid Number');
-    console.log('Hi')
+    
     return;
   } else if (pwLength < 8) {
     alert('Password must contain no less then 8 characters');
-    console.log('Hello')
+    
     return;
   } else if (pwLength > 128) {
-    console.log('Hola')
+    
     alert('Password must contain no more then 128 characrers');
     return;
   } else {
